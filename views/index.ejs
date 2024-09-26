@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khatabook - Files</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS -->
+    <style>
+        .icon-btn:hover {
+            background-color: #e2e8f0; /* Tailwind hover background */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Left side: Khatabook title -->
+            <a href="/" class="text-2xl font-bold">Khatabook</a>
+            
+            <!-- Right side: Navigation links -->
+            <div class="flex space-x-6">
+                <a href="/" class="text-lg hover:underline">Home</a>
+                <a href="/create" class="text-lg hover:underline">Create New Hissab</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto py-10 px-6">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Hissab Folder Files</h1>
+        </div>
+        <!-- File List -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <% if (files.length === 0) { %>
+                <p class="text-gray-500">No files available. Please create a new hissab.</p>
+            <% } else { %>
+                <ul class="space-y-4">
+                    <% files.forEach(function(file) { %>
+                        <li class="flex justify-between items-center bg-gray-50 hover:bg-gray-100 p-4 rounded-lg shadow">
+                            <!-- File Name -->
+                            <span class="text-lg font-medium"><%= file.split(".")[0] %></span>
+
+                            <!-- Action Icons (Show, Edit, Delete) -->
+                            <div class="flex space-x-4">
+                                <!-- Show Button -->
+                                <a href="/showhissab/<%= file %>" class="icon-btn text-gray-500 hover:text-gray-600 p-2 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15M4.5 12h15" />
+                                    </svg>
+                                </a>
+
+                                <!-- Edit Button -->
+                                <a href="/edit/<%= file %>" class="icon-btn text-blue-500 hover:text-blue-600 p-2 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5M16 5l3 3m-9 9l-6-6m9 9v-5a1 1 0 011-1h5" />
+                                    </svg>
+                                </a>
+
+                                <!-- Delete Button -->
+                                <a href="/delete/<%= file %>" class="icon-btn text-red-500 hover:text-red-600 p-2 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
